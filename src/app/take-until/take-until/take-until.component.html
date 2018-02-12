@@ -1,0 +1,14 @@
+<h1>Take until</h1>
+<div class="wrapper">
+  <button (click)="toggleLeak()">Переключить leak</button>
+  <app-leak *ngIf="showLeak"></app-leak>
+</div>
+<div class="wrapper">
+  <button (click)="toggleFix()">Переключить fixed</button>
+  <app-fixed *ngIf="showFix"></app-fixed>
+</div>
+<div class="wrapper">
+  <button (click)="toggleFixSubject()">Переключить fixed-subject</button>
+  <app-fixed-subject *ngIf="showFixSubject"></app-fixed-subject>
+
+</div>

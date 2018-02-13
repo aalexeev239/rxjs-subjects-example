@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 export enum AuthState {
-  LOGGED_IN,
+  LOGGED,
   NONE
 }
 

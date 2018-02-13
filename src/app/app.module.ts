@@ -11,6 +11,7 @@ import "rxjs/add/operator/delay";
 import "rxjs/add/operator/share";
 import {TakeUntilModule} from "./take-until/take-until.module";
 import {ShareModule} from "./share/share.module";
+import {CachingModule} from "./caching/caching.module";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ShareModule} from "./share/share.module";
   imports: [
     BrowserModule,
     TakeUntilModule,
-    ShareModule
+    ShareModule,
+    CachingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

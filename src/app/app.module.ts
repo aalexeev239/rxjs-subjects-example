@@ -1,11 +1,16 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
-import {TakeUntilModule} from "./take-until/take-until.module";
-
 import "rxjs/add/observable/interval";
 import "rxjs/add/operator/take";
 import "rxjs/add/operator/takeUntil";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/delay";
+import "rxjs/add/operator/share";
+import {TakeUntilModule} from "./take-until/take-until.module";
+import {ShareModule} from "./share/share.module";
 
 @NgModule({
   declarations: [
@@ -13,7 +18,8 @@ import "rxjs/add/operator/takeUntil";
   ],
   imports: [
     BrowserModule,
-    TakeUntilModule
+    TakeUntilModule,
+    ShareModule
   ],
   providers: [],
   bootstrap: [AppComponent]

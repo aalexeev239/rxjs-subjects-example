@@ -16,10 +16,14 @@ export class ShareComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.complexProblem();
+    this.problem();
+    this.resolvedProblem();
   }
 
-  private simpleProblem() {
+  /**
+   * Проблема — делаем два запроса, предполагая, что будет один.
+   */
+  private problem() {
     const request$ = this.http.get<any>("https://api.github.com/search/repositories?q=rxjs");
 
     request$
@@ -36,7 +40,13 @@ export class ShareComponent implements OnInit {
       });
   }
 
-  private complexProblem() {
+  /**
+   * Решение — использование share
+   * В данном случае очевидно, что есть две подписки, однако в более сложных случаях
+   * такой код может быть разделен по разным файлам, и обнаружить ошибку сложнее.
+   * Всегда проверяйте, не делается ли двойных запросов.
+   */
+  private resolvedProblem() {
     const request$ = this.http.get<any>("https://api.github.com/search/repositories?q=rxjs")
       .share();
 

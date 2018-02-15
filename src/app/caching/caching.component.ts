@@ -19,15 +19,15 @@ export class CachingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getResource4()
+    this.getResource1()
       .subscribe((v) => {
-        console.log("--- v", v);
+        console.log(v);
       });
 
     setTimeout(() => {
-      this.getResource4()
+      this.getResource1()
         .subscribe((v) => {
-          console.log("--- v2", v);
+          console.log(v);
         });
     }, 2000);
   }

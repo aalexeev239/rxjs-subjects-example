@@ -19,11 +19,6 @@ export class ShareComponent implements OnInit {
     this.complexProblem();
   }
 
-  loadMore() {
-    this.loadMoreSubject.next();
-    this.loading = true;
-  }
-
   private simpleProblem() {
     const request$ = this.http.get<any>("https://api.github.com/search/repositories?q=rxjs");
 
@@ -42,24 +37,20 @@ export class ShareComponent implements OnInit {
   }
 
   private complexProblem() {
-    const names$ = this.getNames()
+    const request$ = this.http.get<any>("https://api.github.com/search/repositories?q=rxjs")
       .share();
 
-    names$
+    request$
+      .map(data => data.items.map(repo => repo.name))
       .subscribe(v => {
         console.log(v);
       });
 
-    names$
+    request$
+      .map(data => data.items.filter(repo => repo.name === "rxjs")[0])
+      .map(repo => repo.score)
       .subscribe(v => {
         this.loading = false;
       });
-  }
-
-  private getNames(): Observable<string[]> {
-    return this.loadMoreSubject
-      .switchMap(() => this.http.get<any>("https://api.github.com/search/repositories?q=rxjs"))
-      .delay(1000)
-      .map(data => data.items.map(repo => repo.name));
   }
 }

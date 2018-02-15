@@ -16,6 +16,9 @@ export class FixedComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    /**
+     * фикс — сохраняем ссылку на подписку в массив подписок
+     */
     const subscription = Observable.interval(200)
       .take(20)
       .subscribe((value) => {
@@ -25,6 +28,9 @@ export class FixedComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
+  /**
+   * при уничтожении компонента проходимя по массиву и отписываемся
+   */
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }

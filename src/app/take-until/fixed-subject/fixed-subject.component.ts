@@ -10,22 +10,31 @@ import {Subject} from "rxjs/Subject";
 })
 export class FixedSubjectComponent implements OnInit {
   private color = getRandomColor();
-  private subject = new Subject<void>();
+  /**
+   * Создаем специальный сабджект для отписки
+   */
+  private destroyStream = new Subject<void>();
 
   constructor() {
   }
 
   ngOnInit() {
+    /**
+     * Оператор takeUntil автоматически завершит поток, когда в его аргумент прийдет значение
+     */
     Observable.interval(200)
       .take(20)
-      .takeUntil(this.subject)
+      .takeUntil(this.destroyStream)
       .subscribe((value) => {
         console.log("%c " + value, `color: ${this.color}`);
       });
   }
 
+  /**
+   * передаем значение в destroyStream
+   */
   ngOnDestroy() {
-    this.subject.next();
+    this.destroyStream.next();
   }
 
 }
